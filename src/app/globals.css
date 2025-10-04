@@ -1,25 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --white: #ffffff;
 
+  --gray900: #121214;
+  --gray800: #202024;
+  --gray300: #c4c4cc;
+  --gray100: #e1e1e6;
+
+  --green500: #00875f;
+  --green300: #00b37e;
+}
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-roboto);
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--gray900);
+  color: var(--gray100);
+  -webkit-font-smoothing: antialiased;
+}
+body,
+input,
+textarea,
+button {
   font-family: var(--font-roboto);
+  font-weight: 400;
 }
