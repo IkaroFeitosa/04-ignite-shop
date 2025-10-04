@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import logoImg from "../assets/Logo.svg";
+import Image from "next/image";
+import styles from "@/styles/pages/app.module.css";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -20,7 +23,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>{children}</body>
+      <body className={`${roboto.variable}`}>
+        <div className={styles.Container}>
+          <header className={styles.Header}>
+            <Image
+              src={logoImg.src}
+              alt="Ignite Shop"
+              width={logoImg.width}
+              height={logoImg.height}
+            />
+          </header>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

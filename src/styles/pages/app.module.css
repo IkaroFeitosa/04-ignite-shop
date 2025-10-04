@@ -1,0 +1,9 @@
+.Container {
+  @apply flex flex-col items-start justify-center min-h-screen;
+}
+
+.Header {
+  @apply py-[2rem] pb-[2rem];
+  @apply w-full max-w-[1180px];
+  margin: 0 auto;
+}
