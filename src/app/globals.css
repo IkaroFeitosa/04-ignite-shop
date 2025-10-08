@@ -10,6 +10,11 @@
 
   --green500: #00875f;
   --green300: #00b37e;
+
+  --fontSizeMd: 1.125rem;
+  --fontSizeLg: 1.25rem;
+  --fontSizeXl: 1.5rem;
+  --fontSize2xl: 2rem;
 }
 @theme inline {
 }
