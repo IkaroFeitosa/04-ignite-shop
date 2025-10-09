@@ -1,13 +1,13 @@
 .HomeContainer {
   @reference "tailwindcss";
-  @apply flex gap-12 ml-auto w-full;
+  @apply flex ml-auto w-full;
   max-width: calc(1180px - ((100vw - 1180px) / 2));
   min-height: 656px;
 }
 
 .Product {
   background: linear-gradient(180deg, #1ea483 0%, #7465d4 100%);
-  @apply rounded-md flex items-center justify-center p-1 relative cursor-pointer overflow-hidden;
+  @apply rounded-md flex items-center justify-center relative cursor-pointer overflow-hidden;
 
   img {
     @apply object-cover
@@ -17,15 +17,15 @@
     @apply absolute bottom-1 left-1 right-1 flex items-center justify-between p-4 rounded-md bg-black/60 translate-y-full opacity-0 transition-all;
 
     strong {
+      @apply block;
       font-size: var(--fontSizeLg);
       font-weight: 700;
-      display: block;
       color: var(--gray100);
     }
 
     span {
+      @apply font-bold;
       font-size: var(--fontSizeXl);
-      font-weight: bold;
       color: var(--green300);
     }
   }
