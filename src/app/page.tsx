@@ -6,6 +6,7 @@ import { useKeenSlider } from "keen-slider/react";
 import camiseta1Img from "../assets/camisetas/1.png";
 import camiseta2Img from "../assets/camisetas/2.png";
 import camiseta3Img from "../assets/camisetas/3.png";
+import camiseta4Img from "../assets/camisetas/4.png";
 import "keen-slider/keen-slider.min.css";
 
 export default function Home() {
@@ -39,7 +40,7 @@ export default function Home() {
         </footer>
       </a>
       <a href="" className={styles.Product + " keen-slider__slide"}>
-        <Image src={camiseta2Img.src} alt="" width={520} height={480} />
+        <Image src={camiseta4Img.src} alt="" width={520} height={480} />
         <footer>
           <strong>Camiseta Y2</strong>
           <span>R$ 99,90</span>

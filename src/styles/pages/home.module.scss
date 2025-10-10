@@ -1,7 +1,6 @@
 .HomeContainer {
   @reference "tailwindcss";
-  @apply flex ml-auto w-full;
-  max-width: calc(1180px - ((100vw - 1180px) / 2));
+  @apply flex ml-auto w-full max-w-[calc(100vw-((100vw-1180px)/2))];
   min-height: 656px;
 }
 
