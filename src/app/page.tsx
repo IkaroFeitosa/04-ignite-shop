@@ -13,7 +13,10 @@ async function getProducts() {
       name: product.name,
       description: product.description,
       images: product.images,
-      price: price.unit_amount ? price.unit_amount / 100 : 0,
+      price: Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(price.unit_amount! / 100),
     } as IProduct;
   });
 }

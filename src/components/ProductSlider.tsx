@@ -9,7 +9,7 @@ export interface IProduct {
   name: string;
   description: string;
   images: string[];
-  price: number;
+  price: string;
 }
 interface IProductSliderProps {
   products: IProduct[];
@@ -39,7 +39,7 @@ export function ProductSlider({ products }: IProductSliderProps) {
           />
           <footer>
             <strong>{product.name}</strong>
-            <span>R$ {product.price}</span>
+            <span>{product.price}</span>
           </footer>
         </a>
       ))}
