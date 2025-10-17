@@ -15,17 +15,31 @@
   --fontSizeLg: 1.25rem;
   --fontSizeXl: 1.5rem;
   --fontSize2xl: 2rem;
+
+  --text-2xl: var(--fontSize2xl);
+  --text-xl: var(--fontSizeXl);
+  --text-lg: var(--fontSizeLg);
+  --text-md: var(--fontSizeMd);
+
+  --color-gray-900: var(--gray900);
+  --color-gray-800: var(--gray800);
+  --color-gray-300: var(--gray300);
+  --color-gray-100: var(--gray100);
+  --color-white: var(--white);
+  --color-green-500: var(--green500);
+  --color-green-300: var(--green300);
 }
-@theme inline {
+/* @theme inline {
 }
 @media (prefers-color-scheme: dark) {
   :root {
   }
-}
+} */
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   background: var(--gray900);
