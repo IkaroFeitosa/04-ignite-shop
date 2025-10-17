@@ -3,6 +3,7 @@ import styles from "../styles/pages/home.module.scss";
 import Image from "next/image";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import Link from "next/link";
 
 export interface IProduct {
   id: string;
@@ -26,9 +27,9 @@ export function ProductSlider({ products }: IProductSliderProps) {
   return (
     <main className={styles.HomeContainer + " keen-slider"} ref={sliderRef}>
       {products.map((product) => (
-        <a
+        <Link
           key={product.id}
-          href=""
+          href={`/product/${product.id}`}
           className={styles.Product + " keen-slider__slide"}
         >
           <Image
@@ -41,7 +42,7 @@ export function ProductSlider({ products }: IProductSliderProps) {
             <strong>{product.name}</strong>
             <span>{product.price}</span>
           </footer>
-        </a>
+        </Link>
       ))}
     </main>
   );
