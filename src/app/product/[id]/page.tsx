@@ -31,6 +31,7 @@ async function fetchProduct(id: string) {
       style: "currency",
       currency: "BRL",
     }).format(price.unit_amount! / 100),
+    defaultPriceId: price.id,
   } as IProduct;
 }
 

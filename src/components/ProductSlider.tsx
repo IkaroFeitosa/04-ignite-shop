@@ -11,6 +11,7 @@ export interface IProduct {
   description: string;
   images: string[];
   price: string;
+  defaultPriceId: string;
 }
 interface IProductSliderProps {
   products: IProduct[];
