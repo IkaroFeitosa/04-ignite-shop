@@ -2,6 +2,7 @@ import { IProduct, ProductSlider } from "@/components/ProductSlider";
 import { stripe } from "@/lib/stripe";
 import Stripe from "stripe";
 
+export const revalidate = 3600; // revalida a cada 1 hora
 async function getProducts() {
   const response = await stripe.products.list({
     expand: ["data.default_price"],

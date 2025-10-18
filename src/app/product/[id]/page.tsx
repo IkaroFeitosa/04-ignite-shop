@@ -9,9 +9,15 @@ interface ProductPageProps {
   };
 }
 
+export const revalidate = 3600; // revalida a cada 1 hora
+export const dinamicParams = true;
+export async function generateStaticParams() {
+  const products = await stripe.products.list(); // ou sua lógica de busca
+  const toproducts = products.data.slice(0, 5); // você pode limitar a lista se quiser
+  return toproducts.map((product) => ({ id: product.id }));
+}
+
 async function fetchProduct(id: string) {
-  // Função para buscar os dados do produto pela ID
-  // Pode ser uma chamada à API ou consulta ao banco de dados
   const product = await stripe.products.retrieve(id, {
     expand: ["default_price"],
   });
@@ -29,7 +35,8 @@ async function fetchProduct(id: string) {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await fetchProduct(params.id);
+  const { id } = await params;
+  const product = await fetchProduct(id);
 
   return <ProductComponent product={product} />;
 }
