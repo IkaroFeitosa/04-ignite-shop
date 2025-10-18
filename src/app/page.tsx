@@ -21,8 +21,14 @@ async function getProducts() {
     } as IProduct;
   });
 }
+export async function fetchAPIMessage() {
+  const response = await fetch("http://localhost:3000/api");
+  return response.json();
+}
 
 export default async function Home() {
   const products = await getProducts();
+  const teste = await fetchAPIMessage();
+  console.log(teste);
   return <ProductSlider products={products} />;
 }
