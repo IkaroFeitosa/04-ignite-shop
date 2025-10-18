@@ -31,6 +31,7 @@ export function ProductSlider({ products }: IProductSliderProps) {
           key={product.id}
           href={`/product/${product.id}`}
           className={styles.Product + " keen-slider__slide"}
+          prefetch={false}
         >
           <Image
             src={product.images[0]}
