@@ -1,4 +1,7 @@
-import styles from "@/styles/pages/product.module.scss";
+import { stripe } from "@/lib/stripe";
+import ProductComponent from "./ProductComponent";
+import { IProduct } from "@/components/ProductSlider";
+import Stripe from "stripe";
 
 interface ProductPageProps {
   params: {
@@ -6,19 +9,27 @@ interface ProductPageProps {
   };
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  return (
-    <main className={styles.ProductContainer}>
-      <div className={styles.ImageContainer}>{/* Imagem do produto */}</div>
-      <div className={styles.ProductDetails}>
-        <h1>Camiseta X</h1>
-        <span>R$ 79,90</span>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <button>Comprar agora</button>
-      </div>
-    </main>
-  );
+async function fetchProduct(id: string) {
+  // Função para buscar os dados do produto pela ID
+  // Pode ser uma chamada à API ou consulta ao banco de dados
+  const product = await stripe.products.retrieve(id, {
+    expand: ["default_price"],
+  });
+  const price = product.default_price as Stripe.Price;
+  return {
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    images: product.images,
+    price: Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price.unit_amount! / 100),
+  } as IProduct;
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const product = await fetchProduct(params.id);
+
+  return <ProductComponent product={product} />;
 }
