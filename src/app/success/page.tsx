@@ -2,6 +2,7 @@ import { stripe } from "@/lib/stripe";
 import styles from "@/styles/pages/success.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import Stripe from "stripe";
 
 async function getSessionDetails(sessionId: string) {
@@ -26,9 +27,9 @@ export default async function Success({
 }: {
   searchParams: { session_id: string };
 }) {
+  if (!searchParams.session_id) redirect("/");
   const searchParamsResult = await searchParams;
   const { session_id } = searchParamsResult;
-  console.log("ID da sessão de checkout:", session_id);
   const sessionDetails = await getSessionDetails(session_id);
   return (
     <main className={styles.SuccessContainer}>
