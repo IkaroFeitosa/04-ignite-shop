@@ -3,6 +3,20 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const { priceId } = await request.json();
+  if (request.method !== "POST") {
+    return NextResponse.json(
+      { message: "Method not allowed" },
+      { status: 405 }
+    );
+  }
+
+  if (!priceId) {
+    return NextResponse.json(
+      { message: "Price ID is required" },
+      { status: 400 }
+    );
+  }
+
   console.log("Price ID recebido na API:", priceId);
   const successUrl = `${process.env.NEXT_URL}/success`;
   const cancelUrl = `${process.env.NEXT_URL}/`;

@@ -1,23 +1,30 @@
 "use client";
 import { IProduct } from "@/components/ProductSlider";
 import styles from "@/styles/pages/product.module.scss";
+import axios from "axios";
 import Image from "next/image";
+import { useState } from "react";
 interface ProductComponentProps {
   product: IProduct;
 }
 
 export default function ProductComponent({ product }: ProductComponentProps) {
+  const [isLoading, setIsLoading] = useState(false);
   async function handleBuyNow() {
     console.log("Comprar agora:", product.defaultPriceId);
-    const response = await fetch("/api/checkout", {
-      method: "POST",
-      body: JSON.stringify({ priceId: product.defaultPriceId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
+    try {
+      setIsLoading(true);
+      const response = await axios.post("/api/checkout", {
+        priceId: product.defaultPriceId,
+      });
+      const checkoutUrl = response.data.checkoutUrl;
+      console.log(response.data);
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Erro ao criar sessão de checkout:", error);
+    }
+
     // Lógica para redirecionar para a página de checkout
   }
   return (
@@ -34,7 +41,9 @@ export default function ProductComponent({ product }: ProductComponentProps) {
         <h1>{product.name}</h1>
         <span>{product.price}</span>
         <p>{product.description}</p>
-        <button onClick={handleBuyNow}>Comprar agora</button>
+        <button disabled={isLoading} onClick={handleBuyNow}>
+          {isLoading ? "Carregando..." : "Comprar agora"}
+        </button>
       </div>
     </main>
   );
